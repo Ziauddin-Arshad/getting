@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Layer SVG Donut Pie Chart</title>
+    <style>
+        .pg-8-containor {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 100px;
+        }
+
+        .pg-8-count {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .pg-8-ring {
+            fill: none;
+            stroke: #d3d3d3;
+            stroke-width: 14;
+        }
+
+        .pg-8-segment {
+            fill: none;
+            stroke-width: 14;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1.5s ease;
+        }
+
+        .pg-8-inner-white {
+            fill: white;
+        }
+
+        .pg-8-inner-color-1 {
+            fill: #6F86BE;
+        }
+        .pg-8-inner-color-2 {
+            fill: #6D95F6;
+        }
+        .pg-8-inner-color-3 {
+            fill: #89B8CD;
+        }
+
+        .percentage-pg-8 {
+            font-size: 14px;
+            font-weight: bold;
+            fill: white;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="pg-8-containor">
+        <!-- Donut 1 -->
+        <div class="pg-8-count">
+            <svg viewBox="0 0 100 100">
+                <!-- Background ring -->
+                <circle class="pg-8-ring" cx="50" cy="50" r="40"></circle>
+                <!-- Animated percentage ring -->
+                <circle class="pg-8-segment" id="pg-8-f1" cx="50" cy="50" r="40" stroke="#6F85BE"></circle>
+                <!-- Inner white circle (padding) -->
+                <circle class="pg-8-inner-white" cx="50" cy="50" r="30"></circle>
+                <!-- Inner colored ring -->
+                <circle class="pg-8-inner-color-1" cx="50" cy="50" r="25"></circle>
+                <!-- Percentage text -->
+                <text x="50" y="50" class="percentage-pg-8" id="percentage-tire-1">0%</text>
+            </svg>
+        </div>
+
+        <!-- Donut 2 -->
+        <div class="pg-8-count">
+            <svg viewBox="0 0 100 100">
+                <circle class="pg-8-ring" cx="50" cy="50" r="40"></circle>
+                <circle class="pg-8-segment" id="pg-8-f2" cx="50" cy="50" r="40" stroke="#6D95F6"></circle>
+                <circle class="pg-8-inner-white" cx="50" cy="50" r="30"></circle>
+                <circle class="pg-8-inner-color-2" cx="50" cy="50" r="25"></circle>
+                <text x="50" y="50" class="percentage-pg-8" id="percentage-tire-2">0%</text>
+            </svg>
+        </div>
+
+        <!-- Donut 3 -->
+        <div class="pg-8-count">
+            <svg viewBox="0 0 100 100">
+                <circle class="pg-8-ring" cx="50" cy="50" r="40"></circle>
+                <circle class="pg-8-segment" id="pg-8-f3" cx="50" cy="50" r="40" stroke="#89B8CD"></circle>
+                <circle class="pg-8-inner-white" cx="50" cy="50" r="30"></circle>
+                <circle class="pg-8-inner-color-3" cx="50" cy="50" r="25"></circle>
+                <text x="50" y="50" class="percentage-pg-8" id="percentage-tire-3">0%</text>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // Define target percentages for each donut chart
+        const targetPercentage_pg8_1 = 65;
+        const targetPercentage_pg8_2 = 46;
+        const targetPercentage_pg8_3 = 35;
+
+        // Calculate circle circumference
+        const radius = 40;
+        const circumference = 2 * Math.PI * radius;
+
+        // Select elements
+        const pg8_f1 = document.getElementById("pg-8-f1");
+        const pg8_f2 = document.getElementById("pg-8-f2");
+        const pg8_f3 = document.getElementById("pg-8-f3");
+
+        const percentage_pg8_1 = document.getElementById("percentage-tire-1");
+        const percentage_pg8_2 = document.getElementById("percentage-tire-2");
+        const percentage_pg8_3 = document.getElementById("percentage-tire-3");
+
+        // Initialize segments
+        [pg8_f1, pg8_f2, pg8_f3].forEach(segment => {
+            segment.style.strokeDasharray = circumference;
+            segment.style.strokeDashoffset = circumference;
+        });
+
+        // Animate each chart to the target percentage
+        function animateChart(segment, percentageText, targetPercentage) {
+            let currentPercentage = 0;
+            const animationInterval = setInterval(() => {
+                if (currentPercentage >= targetPercentage) {
+                    clearInterval(animationInterval);
+                } else {
+                    currentPercentage++;
+                    const offset = circumference - (currentPercentage / 100) * circumference;
+                    segment.style.strokeDashoffset = offset;
+                    percentageText.textContent = `${currentPercentage}%`;
+                }
+            }, 20);
+        }
+
+        // Start animations
+        animateChart(pg8_f1, percentage_pg8_1, targetPercentage_pg8_1);
+        animateChart(pg8_f2, percentage_pg8_2, targetPercentage_pg8_2);
+        animateChart(pg8_f3, percentage_pg8_3, targetPercentage_pg8_3);
+    </script>
+</body>
+</html>

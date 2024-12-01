@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <title>Array-One</title>
+</head>
+<body>
+    <script>
+        //  var x = ["one" , "two" , "three" ,"fore"];
+        //     x.map((count)=>{
+        //         document.write(`
+        //            <a href="#">${count}</a><br>
+        //         `)
+        //     })
+        //     for(var y of x){
+        //         document.write(
+        //             `<div class = "card">
+        //              <div class = "card-head">
+        //                  ${y}
+        //              </div>
+        //              <div class = "card-footer">
+        //                  <button class = "btn btn-info">Cout</button>
+        //             </div>
+        //         </div>`
+        //         )
+        //     }
+          
+        //  var x = [
+        //        {name:"zia" , num:47 , role:"developer"},
+        //        {name:"saad" , num:79, role:"desiner"}
+        //  ]
+        //   x.map((spot)=>{
+        //        var {name , num , role} = spot;
+        //      document.write(`${name}<br>${num}<br>`)
+        //   })
+
+
+          var x = [
+        {name: "zia", num: 47, role: "developer"},
+        {name: "saad", num: 79, role: "designer"}
+    ];
+    
+    x.map((...spot) => {
+        // spot contains an array of the arguments passed to map(), so we access the first one
+        var [{name, num, role}] = spot;  // Destructuring the first argument from the array
+        document.write(`${name}<br>${num}<br>`);
+    });
+    </script>
+</body>
+</html>

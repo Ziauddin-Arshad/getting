@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <title>K.F.C</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-between" id="container">
+     
+       
+    </div>
+    <div class="d-flex">
+    <div id="display"></div>
+    <div id="amount"></div>
+    </div>
+</body>
+<script>
+     let x= [
+          {id:1,img:"public/images/burger.jpg" , title:"Burger" , price: 500 },
+          {id:2,img:"public/images/lava cake.jpg" , title:"Lava cake" , price: 250 },
+          {id:3,img:"public/images/chicken roll.jpg" , title:"Chicken roll" , price: 600 }
+     ];
+     var items = x.map((patter)=>{
+         var cards = document.getElementById("container");
+          cards.innerHTML += `
+            <div class="card w-25">
+        <div class="card-header">
+             <h3>${patter.title}</h3>
+        </div>
+        <div class="card-body">
+            <img src="${patter.img}" width="100%">
+            <h4 class="text-center">${patter.price}</h4>
+        </div>
+        <div class="card-footer">
+             <center><button class="btn btn-danger" id="button" onclick=btnClick(${patter.id})>Select</button></center>
+        </div>
+       </div> 
+          `
+        })
+        function btnClick(quality){
+             var out =  x.map((liter)=>{
+                var Display = document.getElementById("display");
+                  if( liter.id === quality ){
+                    Display.innerHTML += (`
+                 <div class= "card w-25 ">
+                     <div class = "card-body">
+                         <img src="${liter.img}" width="100%">
+                           <h4 class="text-center">${liter.price}</h4>
+                     </div>
+                     <div class="card-footer text-center row">
+                           <button class="btn btn-info" onClick="btnIns( 'plus' , ${liter.id})">+</button>
+                           <h5 id="qut-${liter.id}">1</h5>
+                           <button class="btn btn-info" onClick = "btnIns('minus', ${liter.id})">-</button>
+                     </div>
+                 </div>   
+             `)
+
+             
+                  }
+             })
+             
+        }
+        function btnIns(nof , Id){
+            var noof = document.getElementById(`qut-${Id}`).innerHTML;
+              if( nof === 'plus' ){
+                 noof++
+              }if(nof === 'minus'){
+                noof--
+              }
+              document.getElementById(`qut-${Id}`).innerHTML = noof;
+        }
+</script>
+</html>    

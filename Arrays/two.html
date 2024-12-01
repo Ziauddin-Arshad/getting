@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <title>Document</title>
+    <script>
+        //  function X(look){
+        //     const {number, title , id} = look;
+        //     document.write(`${number}<br>${title} <br>${id}`)
+        //  }
+        //  X("zia" , "developer" , 47)
+        function passWord( name , sucess , fail){
+             if(name === "zia"){
+                 sucess();
+             }else{
+                fail()
+
+
+            }
+        }
+        passWord("zia", function(){
+            document.write(`login sucess`)
+        },
+         function(){
+            document.write(`login fail`)
+         }
+     )
+
+    </script>
+</head>
+<body>
+    
+</body>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</html>

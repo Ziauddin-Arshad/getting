@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <title>Document</title>
+    <style>
+        #img {
+            width: 300px;
+            height: 300px;
+            transition: box-shadow 0.3s ease; /* Smooth transition for shadow effect */
+        }
+        /* Shadow effect on hover for buttons */
+        .hover-effect {
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Apply shadow */
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container border border-primary w-50" style="display: flex; justify-content: start; align-items: center;height: 700px;">
+            <div>
+                <button class="btn btn-dark" onclick="btnClick('dark')" onmouseover="bt('dark')" id="btn-dark">
+                    Our Services
+                </button>
+                <button class="btn btn-warning" onclick="btnClick('warning')" onmouseover="bt('warning')" id="btn-warning">
+                    Our Services
+                </button>
+                <button class="btn btn-info" onclick="btnClick('info')" onmouseover="bt('info')" id="btn-info">
+                    Our Services
+                </button>
+                <button class="btn btn-success" onclick="btnClick('green')" onmouseover="bt('green')" id="btn-green">
+                    Our Services
+                </button>
+            </div>
+        </div>
+        <div style="display: flex; gap: 50px;">
+        <div>
+            <!-- Default image is set here -->
+            <img id="img" src="public/images/default.jpg" alt="Service Image">
+            <button class="btn btn-danger" onclick="btnRead('collection')">Read Only</button>
+
+        </div>
+        <div>
+            <p id="collect"></p>
+        </div>
+        </div>
+    </section>
+    <script>
+        // Logic to change image when a button is clicked
+        function btnClick(lot) {
+             document.getElementById("title").innerHTML = ""
+            const img = document.getElementById('img');
+            removeButtonShadows(); // Remove shadow from all buttons before applying a new one
+
+            if (lot === 'dark') {
+                img.src = 'public/images/burger.jpg'; // Example image for dark
+                document.getElementById('btn-dark').classList.add('hover-effect'); // Add shadow to dark button
+            } else if (lot === 'warning') {
+                img.src = 'public/images/lava cake.jpg'; // Example image for warning
+                document.getElementById('btn-warning').classList.add('hover-effect'); // Add shadow to warning button
+            } else if (lot === 'info') {
+                img.src = 'public/images/chicken roll.jpg'; // Example image for info
+                document.getElementById('btn-info').classList.add('hover-effect'); // Add shadow to info button
+            } else if (lot === 'green') {
+                img.src = 'public/images/chicken food-order.jpg'; // Example image for green
+                document.getElementById('btn-green').classList.add('hover-effect'); // Add shadow to green button
+            }
+        }
+        // Logic to change image when hovering over a button
+        function bt(pot) {
+            const img = document.getElementById('img');
+            removeButtonShadows(); // Remove all button shadows before applying hover effect
+            if (pot === 'dark') {
+                img.src = 'public/images/burger.jpg'; // Example hover image for dark
+                document.getElementById('btn-dark').classList.add('hover-effect'); // Add shadow to dark button
+            } else if (pot === 'warning') {
+                img.src = 'public/images/lava cake.jpg'; // Example hover image for warning
+                document.getElementById('btn-warning').classList.add('hover-effect'); // Add shadow to warning button
+            } else if (pot === 'info') {
+                img.src = 'public/images/chicken roll.jpg'; // Example hover image for info
+                document.getElementById('btn-info').classList.add('hover-effect'); // Add shadow to info button
+            } else if (pot === 'green') {
+                img.src = 'public/images/chicken food-order.jpg'; // Example hover image for green
+                document.getElementById('btn-green').classList.add('hover-effect'); // Add shadow to green button
+            }
+        }
+
+        // Function to remove shadow from all buttons
+        function removeButtonShadows() {
+            document.getElementById('btn-dark').classList.remove('hover-effect');
+            document.getElementById('btn-warning').classList.remove('hover-effect');
+            document.getElementById('btn-info').classList.remove('hover-effect');
+            document.getElementById('btn-green').classList.remove('hover-effect');
+        }
+
+        // Set default image on page load and add shadow to the default button
+        document.getElementById('img').src = 'public/images/default.jpg';
+        document.getElementById('btn-dark').classList.add('hover-effect'); // Add shadow to default button
+        function btnRead(school){
+            var cll = document.getElementById("collect").innerHTML;
+            
+            
+        }
+    </script>
+</body>
+</html>

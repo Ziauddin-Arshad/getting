@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zooming Morph Transition</title>
+  <style>
+    /* General styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      height: 200vh; /* To allow scrolling */
+    }
+
+    /* Centering the letter */
+    .zoom-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      position: relative;
+    }
+
+    /* Letter styling */
+    .letter {
+      font-size: 10vw; /* Adjust size based on viewport width */
+      color: transparent;
+      background-image: url('your-image.jpg'); /* Set your image URL here */
+      background-clip: text;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+      -webkit-background-clip: text;
+    }
+
+    /* Full screen image for the zoom effect */
+    .full-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('your-image.jpg'); /* Use the same image as the letter */
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="zoom-container">
+    <div class="letter bg-da" id="zoomLetter">A</div>
+  </div>
+  <div class="full-image"></div>
+
+  <script>
+    document.addEventListener('scroll', () => {
+      const letter = document.getElementById('zoomLetter');
+      const fullImage = document.querySelector('.full-image');
+      const scrollPos = window.scrollY;
+
+      if (scrollPos > 50) {
+        // Zoom in effect on the letter
+        letter.style.transform = `scale(${1 + scrollPos / 1000})`;
+        // Fade in the full-screen image
+        fullImage.style.opacity = Math.min(scrollPos / 500, 1);
+      } else {
+        letter.style.transform = 'scale(1)';
+        fullImage.style.opacity = 0;
+      }
+    });
+  </script>
+</body>
+</html>

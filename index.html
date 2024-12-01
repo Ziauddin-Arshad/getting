@@ -1,1 +1,92 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        #p{
+            display: none;
+            position: absolute;
+            display: none;
+            position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+        }
+        .pop{
+            display: block;
+               
+        }
+        #pen{
+            display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+        }
+        
+    </style>
+
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <select class="form-control" onchange="getValue()" id="spot">
+                <option value="Nizamabad" id="NZB">Nizamabad</option>
+                <option value="Hyderabad" id="HYD">Hyderabad</option>
+                <option value="Warangal" id="WRL">Warangal</option>
+            </select>
+            <p id="output"></p>
+            <button class="btn btn-info" onclick="btnClicks('click1')">Pop-up-1</button>
+            <button class="btn btn-warning" onclick="btnClicks('cilck2')">Pop-up-2</button>
+        </div>
+        <div id="pen">
+        <div id="p">
+             <div class="text-center">
+                <button class="btn btn-close align-text-top" onclick="btnClose()"></button>
+                <h1>invisible</h1>
+                 <p id="count-let"></p>
+             </div>
+        </div>
+        </div>
+    </div>
+    <script>
+          function getValue(){
+             var selected = document.getElementById("spot");
+             var display = document.getElementById("output");
+              display.innerHTML = `You have seleceted the state ${selected.value}`
+          }
+          function btnClicks(done){
+             var display = document.getElementById("count-let");
+             var popup = document.getElementById("p");
+             var pens = document.getElementById("pen");
+              if( done === 'click1'){
+                 display.innerHTML = "You have clicked one button"
+                 p.style.display = 'block'
+                 pens.style.display = "block"
+                 
+
+              }if( done === 'cilck2'){
+                display.innerHTML = "you have clicked the second button"
+                p.style.display = 'block'
+              }
+          }
+          function btnClose(){
+             document.getElementById("pen").style.display = 'none'
+             document.getElementById("p").style.display = 'none'
+          }
+    </script>
+</body>
+</html>
